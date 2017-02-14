@@ -56,7 +56,7 @@
     ViewController *viewController = [[ViewController alloc] init];
     [viewController setTitle:@"general"];
     
-    self = [self initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController] initTabIndex:initialIndex];
+    self = [self initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController] initTabIndex:initialIndex andSelectionLineColor:[UIColor greenColor]];
     
     if (self) {
         _sizingTabBar = sizingTabBar;
@@ -81,7 +81,7 @@
             [slideTabBarItems addObject:viewController.slideTabBarItem];
         }];
         
-        self.slideTabView = [[SPSizingSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];
+        self.slideTabView = [[SPSizingSlideTabBar alloc] initWithTabBarItems:slideTabBarItems andSelectionLineColor:[UIColor greenColor]];
     }
 
     [super configureSlideTabView];

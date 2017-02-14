@@ -25,6 +25,8 @@
 
 @property (nonnull, strong, nonatomic) NSArray <SPSlideTabBarItem *> *slideTabBarItems;
 
+@property (nonnull, strong, nonatomic) UIColor *selectionLineColor;
+@property (nonatomic) CGFloat indicatorLineWidthAddition;
 @end
 
 @implementation SPFixedSlideTabBar
@@ -34,10 +36,12 @@
  *
  * 通过一个 `SPSlideTabBarItem` 数组的初始化方法
  */
-- (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems {
+- (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems andSelectionLineColor:(UIColor *)selectionLineColor {
     self = [self init];
     if (self) {
         _slideTabBarItems = tabBarItems;
+        _selectionLineColor = selectionLineColor;
+        _indicatorLineWidthAddition = 10.0;
         [self initialize];
     }
     return self;
@@ -62,13 +66,13 @@
 //    [self bringSubviewToFront:separatorLine];
     
     _indicatorLine = [UIView new];
-    [self.indicatorLine setBackgroundColor:[UIColor blueColor]];
+    [self.indicatorLine setBackgroundColor:self.selectionLineColor];
     [self.indicatorLine setFrame:CGRectMake(0, 0, 0, 2)];
     [self.scrollView addSubview:self.indicatorLine];
     
     UIButton *firstButton = self.tabBarButtonSubviews.firstObject;
     if (firstButton) {
-        [self.indicatorLine setFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.bounds) - CGRectGetHeight(self.indicatorLine.bounds), firstButton.intrinsicContentSize.width, CGRectGetHeight(self.indicatorLine.bounds))];
+        [self.indicatorLine setFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.bounds) - CGRectGetHeight(self.indicatorLine.bounds), firstButton.intrinsicContentSize.width + self.indicatorLineWidthAddition, CGRectGetHeight(self.indicatorLine.bounds))];
         self.indicatorLine.center = CGPointMake(firstButton.center.x, self.indicatorLine.center.y);
     }
 }
@@ -133,7 +137,7 @@
         UIButton *button = [self.tabBarButtonSubviews objectAtIndex:[self selectedTabIndex]];
         CGRect frame = self.indicatorLine.frame;
         frame.origin.y = CGRectGetHeight(self.frame) - CGRectGetHeight(frame);
-        frame.size.width = button.titleLabel.intrinsicContentSize.width;
+        frame.size.width = button.titleLabel.intrinsicContentSize.width + self.indicatorLineWidthAddition;
         frame.origin.x = CGRectGetMidX(button.frame) - CGRectGetWidth(frame) / 2.0;
         self.indicatorLine.frame = frame;
     }
@@ -264,7 +268,7 @@
         if (button) {
             
             CGRect frame = self.indicatorLine.frame;
-            frame.size.width = button.titleLabel.intrinsicContentSize.width;
+            frame.size.width = button.titleLabel.intrinsicContentSize.width + self.indicatorLineWidthAddition;
             frame.origin.x = CGRectGetMidX(button.frame) - CGRectGetWidth(frame) / 2.0;
             self.indicatorLine.frame = frame;
             
@@ -315,7 +319,7 @@
         
         if (targetButton == button) {
             CGRect frame = self.indicatorLine.frame;
-            frame.size.width = targetButton.titleLabel.intrinsicContentSize.width;
+            frame.size.width = targetButton.titleLabel.intrinsicContentSize.width + self.indicatorLineWidthAddition;
             frame.origin.x = CGRectGetMidX(targetButton.frame) - CGRectGetWidth(frame) / 2.0;
             self.indicatorLine.frame = frame;
             return;
@@ -329,7 +333,7 @@
         CGFloat percentage = ((CGFloat)fabs(pageOffset)) / denominator;
         
         CGRect frame = self.indicatorLine.frame;
-        frame.size.width = button.titleLabel.intrinsicContentSize.width + (targetButton.titleLabel.intrinsicContentSize.width - button.titleLabel.intrinsicContentSize.width) * percentage;
+        frame.size.width = button.titleLabel.intrinsicContentSize.width + self.indicatorLineWidthAddition + (targetButton.titleLabel.intrinsicContentSize.width - button.titleLabel.intrinsicContentSize.width) * percentage;
         frame.origin.x = CGRectGetMidX(button.frame) - CGRectGetWidth(frame) / 2.0 + (CGRectGetMidX(targetButton.frame) - CGRectGetMidX(button.frame)) *percentage;
         self.indicatorLine.frame = frame;
     }
@@ -366,8 +370,8 @@
  *
  * 通过一个 `SPSlideTabBarItem` 数组的初始化方法
  */
-- (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems {
-    self = [super initWithTabBarItems:tabBarItems];
+- (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems andSelectionLineColor:(UIColor *)selectionLineColor {
+    self = [super initWithTabBarItems:tabBarItems andSelectionLineColor:selectionLineColor];
     if (self) {
         [self.scrollView setScrollEnabled:YES];
         self.scrollView.bounces = NO;

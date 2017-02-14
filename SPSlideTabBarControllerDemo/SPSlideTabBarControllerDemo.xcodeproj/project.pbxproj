@@ -15,10 +15,7 @@
 		6F15518D1C7B0AE500B9EBBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551851C7B0AE500B9EBBC /* Assets.xcassets */; };
 		6F15518E1C7B0AE500B9EBBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551861C7B0AE500B9EBBC /* LaunchScreen.storyboard */; };
 		6F15518F1C7B0AE500B9EBBC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1551891C7B0AE500B9EBBC /* HomeViewController.m */; };
-		6F1551901C7B0AE500B9EBBC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F15518A1C7B0AE500B9EBBC /* Info.plist */; };
 		6F1551911C7B0AE500B9EBBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F15518B1C7B0AE500B9EBBC /* main.m */; };
-		6F1551951C7B0AEF00B9EBBC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551931C7B0AEF00B9EBBC /* Info.plist */; };
-		6F15519A1C7B0AF300B9EBBC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551981C7B0AF300B9EBBC /* Info.plist */; };
 		6F15519F1C7B0C8500B9EBBC /* libSPSlideTabBarController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F15519E1C7B0C8500B9EBBC /* libSPSlideTabBarController.a */; };
 /* End PBXBuildFile section */
 
@@ -232,7 +229,7 @@
 		6F6D91BE1C7AE94200CBD75D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = aokizen;
 				TargetAttributes = {
 					6F6D91C51C7AE94200CBD75D = {
@@ -273,11 +270,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F1551951C7B0AEF00B9EBBC /* Info.plist in Resources */,
 				6F15518D1C7B0AE500B9EBBC /* Assets.xcassets in Resources */,
 				6F15518E1C7B0AE500B9EBBC /* LaunchScreen.storyboard in Resources */,
-				6F15519A1C7B0AF300B9EBBC /* Info.plist in Resources */,
-				6F1551901C7B0AE500B9EBBC /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,8 +360,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -389,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -410,8 +406,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -427,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

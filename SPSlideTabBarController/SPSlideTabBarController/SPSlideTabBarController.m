@@ -191,11 +191,11 @@
  * @param viewControllers all viewControllers for all scroll page
  * @param viewControllers 所有滑动页面的 viewController
  */
-- (nonnull instancetype)initWithViewController:(nonnull NSArray<UIViewController *> *)viewControllers {
+- (nonnull instancetype)initWithViewController:(nonnull NSArray<UIViewController *> *)viewControllers andSelectionLineColor:(nullable UIColor *)selectionLineColor {
     self = [self init];
     if (self) {
         _viewControllers = viewControllers;
-        
+        _selectionLineColor = selectionLineColor ?: [UIColor blueColor];
         _initTabIndex = 0;
     }
     return self;
@@ -210,8 +210,8 @@
  * @param initTabIndex the selected tab index at the initialized time
  * @param initTabIndex 初始化的时候选中的 tab index
  */
-- (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers initTabIndex:(NSUInteger)initTabIndex {
-    self = [self initWithViewController:viewControllers];
+- (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers initTabIndex:(NSUInteger)initTabIndex andSelectionLineColor:(nullable UIColor *)selectionLineColor {
+    self = [self initWithViewController:viewControllers andSelectionLineColor:selectionLineColor];
     if (self) {
         _initTabIndex = initTabIndex;
         if (_initTabIndex >= self.viewControllers.count) {
@@ -434,7 +434,7 @@
         [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
             [slideTabBarItems addObject:viewController.slideTabBarItem];
         }];
-        self.slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];
+        self.slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems andSelectionLineColor:self.selectionLineColor];
     }
     [self.slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), self.slideTabView.intrinsicContentSize.height)];
     [self.slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];

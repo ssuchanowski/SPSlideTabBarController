@@ -24,7 +24,7 @@
  *
  * 通过一个 `SPSlideTabBarItem` 数组的初始化方法
  */
-- (instancetype)initWithTabBarItems:(NSArray <SPSlideTabBarItem *> *)tabBarItems;
+- (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems andSelectionLineColor:(UIColor *)selectionLineColor;
 
 
 /**

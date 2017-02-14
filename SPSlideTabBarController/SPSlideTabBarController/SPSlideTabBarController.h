@@ -40,6 +40,11 @@
  */
 @property (assign, nonatomic, readonly) NSUInteger selectedTabIndex;
 
+/**
+ * color for horizontal line indicating tab selection, defaults to `[UIColor blueColor]`
+ *
+ */
+@property (nullable, strong, nonatomic) UIColor *selectionLineColor;
 
 /**
  * 初始化方法
@@ -47,7 +52,7 @@
  * @param viewControllers all viewControllers for all scroll page
  * @param viewControllers 所有滑动页面的 viewController
  */
-- (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers;
+- (nonnull instancetype)initWithViewController:(nonnull NSArray<UIViewController *> *)viewControllers andSelectionLineColor:(nullable UIColor *)selectionLineColor;
 
 /**
  * 初始化方法
@@ -58,7 +63,7 @@
  * @param initTabIndex the selected tab index at the initialized time
  * @param initTabIndex 初始化的时候选中的 tab index
  */
-- (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers initTabIndex:(NSUInteger)initTabIndex;
+- (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers initTabIndex:(NSUInteger)initTabIndex andSelectionLineColor:(nullable UIColor *)selectionLineColor;
 
 @end
 

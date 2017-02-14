@@ -36,7 +36,7 @@
  */
 @interface SPFixedSlideTabBar : UIView <SPSlideTabBarProtocol>
 
-@property (weak, nonatomic) id<SPSlideTabBarDelegate> delegate;
+@property (nullable, weak, nonatomic) id<SPSlideTabBarDelegate> delegate;
 
 /**
  * reset all tab bar item views
