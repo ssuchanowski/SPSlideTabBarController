@@ -45,10 +45,10 @@
 
 - (void)initialize {
 
-    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 1, CGRectGetWidth(self.bounds), 1)];
-    [separatorLine setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
-    [separatorLine setBackgroundColor:[UIColor grayColor]];
-    [self addSubview:separatorLine];
+//    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 1, CGRectGetWidth(self.bounds), 1)];
+//    [separatorLine setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+//    [separatorLine setBackgroundColor:[UIColor grayColor]];
+//    [self addSubview:separatorLine];
     
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     [self.scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -59,7 +59,7 @@
     
     [self resetTabBarItemViews];
     
-    [self bringSubviewToFront:separatorLine];
+//    [self bringSubviewToFront:separatorLine];
     
     _indicatorLine = [UIView new];
     [self.indicatorLine setBackgroundColor:[UIColor blueColor]];
