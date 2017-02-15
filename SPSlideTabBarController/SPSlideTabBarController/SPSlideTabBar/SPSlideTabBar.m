@@ -75,6 +75,35 @@
         [self.indicatorLine setFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.bounds) - CGRectGetHeight(self.indicatorLine.bounds), firstButton.intrinsicContentSize.width + self.indicatorLineWidthAddition, CGRectGetHeight(self.indicatorLine.bounds))];
         self.indicatorLine.center = CGPointMake(firstButton.center.x, self.indicatorLine.center.y);
     }
+    
+    self.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
+    
+    [self addBorderView:YES];
+    [self addBorderView:NO];
+    
+    [self layoutSubviews];
+}
+
+- (void)addBorderView:(BOOL)isTopView {
+    UIView *resultView = [[UIView alloc] initWithFrame:CGRectZero];
+    resultView.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:238.0/255.0 blue:238.0/255.0 alpha:1.0];
+    resultView.translatesAutoresizingMaskIntoConstraints = false;
+    [self addSubview:resultView];
+    
+    NSLayoutConstraint *verticalConstraint = isTopView ? [self.topAnchor constraintEqualToAnchor:resultView.topAnchor] : [self.bottomAnchor constraintEqualToAnchor:resultView.bottomAnchor];
+    
+    [NSLayoutConstraint activateConstraints:@[
+                                              verticalConstraint,
+                                              [self.leadingAnchor constraintEqualToAnchor:resultView.leadingAnchor],
+                                              [self.trailingAnchor constraintEqualToAnchor:resultView.trailingAnchor],
+                                              [NSLayoutConstraint constraintWithItem:resultView
+                                                                           attribute:NSLayoutAttributeHeight
+                                                                           relatedBy:NSLayoutRelationEqual
+                                                                              toItem:nil
+                                                                           attribute:NSLayoutAttributeNotAnAttribute
+                                                                          multiplier:1.0
+                                                                            constant:0.5]
+                                              ]];
 }
 
 
