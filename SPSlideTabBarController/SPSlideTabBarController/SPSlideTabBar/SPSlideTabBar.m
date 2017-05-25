@@ -27,6 +27,7 @@
 
 @property (nonnull, strong, nonatomic) UIColor *selectionLineColor;
 @property (nonatomic) CGFloat indicatorLineWidthAddition;
+@property (nonatomic) CGFloat indicatorLineHeight;
 @end
 
 @implementation SPFixedSlideTabBar
@@ -42,18 +43,13 @@
         _slideTabBarItems = tabBarItems;
         _selectionLineColor = selectionLineColor;
         _indicatorLineWidthAddition = 10.0;
+        _indicatorLineHeight = 2.0;
         [self initialize];
     }
     return self;
 }
 
 - (void)initialize {
-
-//    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - 1, CGRectGetWidth(self.bounds), 1)];
-//    [separatorLine setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
-//    [separatorLine setBackgroundColor:[UIColor grayColor]];
-//    [self addSubview:separatorLine];
-    
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     [self.scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [self addSubview:self.scrollView];
@@ -61,24 +57,29 @@
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     [self.scrollView setScrollEnabled:NO];
     
+    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - self.indicatorLineHeight, CGRectGetWidth(self.scrollView.bounds), self.indicatorLineHeight)];
+    [separatorLine setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+    [separatorLine setBackgroundColor:[UIColor colorWithRed:141.0/255.0 green:144.0/255.0 blue:163.0/255.0 alpha:0.3]];
+    [self.scrollView addSubview:separatorLine];
+    
     [self resetTabBarItemViews];
     
-//    [self bringSubviewToFront:separatorLine];
+    [self bringSubviewToFront:separatorLine];
     
     _indicatorLine = [UIView new];
     [self.indicatorLine setBackgroundColor:self.selectionLineColor];
-    [self.indicatorLine setFrame:CGRectMake(0, 0, 0, 2)];
+    [self.indicatorLine setFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.bounds) - self.indicatorLineHeight, 0, self.indicatorLineHeight)];
     [self.scrollView addSubview:self.indicatorLine];
     
     UIButton *firstButton = self.tabBarButtonSubviews.firstObject;
     if (firstButton) {
-        [self.indicatorLine setFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.bounds) - CGRectGetHeight(self.indicatorLine.bounds), firstButton.intrinsicContentSize.width + self.indicatorLineWidthAddition, CGRectGetHeight(self.indicatorLine.bounds))];
+        [self.indicatorLine setFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.bounds) - self.indicatorLineHeight, firstButton.intrinsicContentSize.width + self.indicatorLineWidthAddition, self.indicatorLineHeight)];
         self.indicatorLine.center = CGPointMake(firstButton.center.x, self.indicatorLine.center.y);
     }
     
-    self.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
+    self.backgroundColor = [UIColor clearColor];
     
-    [self addBorderView:YES];
+    [self addBorderView:NO];
     [self addBorderView:NO];
     
     [self layoutSubviews];
@@ -163,9 +164,9 @@
     [self layoutTabBarItemSubviews];
     
     if ([self selectedTabIndex] < self.tabBarButtonSubviews.count) {
-        UIButton *button = [self.tabBarButtonSubviews objectAtIndex:[self selectedTabIndex]];
+        UIButton *button = self.tabBarButtonSubviews[[self selectedTabIndex]];
         CGRect frame = self.indicatorLine.frame;
-        frame.origin.y = CGRectGetHeight(self.frame) - CGRectGetHeight(frame);
+        frame.origin.y = CGRectGetHeight(self.frame) - self.indicatorLineHeight;
         frame.size.width = button.titleLabel.intrinsicContentSize.width + self.indicatorLineWidthAddition;
         frame.origin.x = CGRectGetMidX(button.frame) - CGRectGetWidth(frame) / 2.0;
         self.indicatorLine.frame = frame;
@@ -362,6 +363,7 @@
         CGFloat percentage = ((CGFloat)fabs(pageOffset)) / denominator;
         
         CGRect frame = self.indicatorLine.frame;
+        frame.origin.y = CGRectGetHeight(self.scrollView.bounds) - self.indicatorLineHeight;
         frame.size.width = button.titleLabel.intrinsicContentSize.width + self.indicatorLineWidthAddition + (targetButton.titleLabel.intrinsicContentSize.width - button.titleLabel.intrinsicContentSize.width) * percentage;
         frame.origin.x = CGRectGetMidX(button.frame) - CGRectGetWidth(frame) / 2.0 + (CGRectGetMidX(targetButton.frame) - CGRectGetMidX(button.frame)) *percentage;
         self.indicatorLine.frame = frame;
