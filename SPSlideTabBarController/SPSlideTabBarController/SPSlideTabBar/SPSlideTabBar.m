@@ -69,6 +69,7 @@
     _indicatorLine = [UIView new];
     [self.indicatorLine setBackgroundColor:self.selectionLineColor];
     [self.indicatorLine setFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.bounds) - self.indicatorLineHeight, 0, self.indicatorLineHeight)];
+    self.indicatorLine.layer.cornerRadius = 1.0;
     [self.scrollView addSubview:self.indicatorLine];
     
     UIButton *firstButton = self.tabBarButtonSubviews.firstObject;
